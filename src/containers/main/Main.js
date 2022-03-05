@@ -35,67 +35,16 @@ export class Main extends Component {
       endDate: "",
       commnent: "",
       action: "Thêm Công Việc", //default ADD ITEM
-      items: [
-        {
-          title: "demo1",
-          contentes: "lam bai tap 1",
-          status: "Chưa làm",
-          startDate: "2021-02-07",
-          endDate: "2021-02-08",
-          commnent: "null",
-        },
-        {
-          title: "demo2",
-          contentes: "lam bai tap 2",
-          status: "Đang làm",
-          startDate: "2021-02-07",
-          endDate: "2021-02-08",
-          commnent: "null",
-        },
-        {
-          title: "demo3",
-          contentes: "lam bai tap 3",
-          status: "Chưa làm",
-          startDate: "2021-02-07",
-          endDate: "2021-02-08",
-          commnent: "null",
-        },
-        {
-          title: "demo4",
-          contentes: "lam bai tap 4",
-          status: "Chưa làm",
-          startDate: "2021-02-07",
-          endDate: "2021-02-08",
-          commnent: "null",
-        },
-        {
-          title: "demo5",
-          contentes: "lam bai tap 5",
-          status: "Chưa làm",
-          startDate: "2021-02-07",
-          endDate: "2021-02-08",
-          commnent: "null",
-        },
-      ],
+      items: JSON.parse(window.localStorage.getItem("datademo"))
     };
-
-    const data = this.state.items;
-
-    // const str = JSON.stringify(data);
-    // window.localStorage.setItem("datademo", str);
-    // const str2 =  window.localStorage.getItem("data");
-    // const data2 = JSON.parse(str2);
-    // console.log("data2 = ", data2);
   }
 
-  //function changetitle
   changeTitle = (e) => {
     this.setState({
       title: e.target.value,
     });
   };
 
-  //function changecontentes
   changeContentes = (e) => {
     this.setState({
       contentes: e.target.value,
@@ -151,6 +100,9 @@ export class Main extends Component {
     } else {
       window.alert("Tên công việc công việc đã có");
     }
+
+    const data = this.state.items;
+    window.localStorage.setItem("datademo", JSON.stringify(data));
     
   };
 
@@ -195,15 +147,20 @@ export class Main extends Component {
       commnent: "",
       action: "Thêm Công Việc",
     });
+    const data = this.state.items;
+    window.localStorage.setItem("datademo", JSON.stringify(data));
   };
 
   //Xoá công việc
-  deleteItem = (title) =>
+  deleteItem = (title) => {
     this.setState({
       items: this.state.items.filter((item) => item.title != title),
     });
+    const data = this.state.items;
+    console.log(data);
+    window.localStorage.setItem("datademo", JSON.stringify(data));
+  }
 
-  
 
   render() {
     return (
