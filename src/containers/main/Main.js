@@ -34,12 +34,12 @@ export class Main extends Component {
       startDate: "",
       endDate: "",
       commnent: "",
-      action: "ADD TO DO LIST", //default ADD ITEM
+      action: "Thêm Công Việc", //default ADD ITEM
       items: [
         {
           title: "demo1",
           contentes: "lam bai tap 1",
-          status: "chua lam",
+          status: "Chưa làm",
           startDate: "2021-02-07",
           endDate: "2021-02-08",
           commnent: "null",
@@ -47,7 +47,7 @@ export class Main extends Component {
         {
           title: "demo2",
           contentes: "lam bai tap 2",
-          status: "chua lam",
+          status: "Đang làm",
           startDate: "2021-02-07",
           endDate: "2021-02-08",
           commnent: "null",
@@ -55,7 +55,23 @@ export class Main extends Component {
         {
           title: "demo3",
           contentes: "lam bai tap 3",
-          status: "chua lam",
+          status: "Chưa làm",
+          startDate: "2021-02-07",
+          endDate: "2021-02-08",
+          commnent: "null",
+        },
+        {
+          title: "demo4",
+          contentes: "lam bai tap 4",
+          status: "Chưa làm",
+          startDate: "2021-02-07",
+          endDate: "2021-02-08",
+          commnent: "null",
+        },
+        {
+          title: "demo5",
+          contentes: "lam bai tap 5",
+          status: "Chưa làm",
           startDate: "2021-02-07",
           endDate: "2021-02-08",
           commnent: "null",
@@ -110,7 +126,7 @@ export class Main extends Component {
     });
   };
 
-  //ADD ITEM
+  //thêm cv
   addItem = () => {
     if (!this.state.items.find((item) => item.title === this.state.title)) {
       this.setState({
@@ -133,12 +149,12 @@ export class Main extends Component {
         commnent: "",
       });
     } else {
-      window.alert("Tiêu đề công việc đã có");
+      window.alert("Tên công việc công việc đã có");
     }
     
   };
 
-  //EDIT LIST
+  //sủa  công việc
   editItem = (item, id) => {
     console.log(item);
     this.setState({
@@ -149,11 +165,11 @@ export class Main extends Component {
       startDate: item.startDate,
       endDate: item.endDate,
       commnent: item.commnent,
-      action: "UPDATE ITEM",
+      action: "Cập Nhật Công Việc",
     });
   };
 
-  //UPDATE LIST
+  //cập nhật sau sửa
   updateItem = () => {
     let items = this.state.items;
     items.map((item, id) => {
@@ -168,7 +184,7 @@ export class Main extends Component {
       }
     });
 
-    //set update list
+    // lấp giá trị cập nhật
     this.setState({
       items: items,
       title: "",
@@ -177,28 +193,25 @@ export class Main extends Component {
       startDate: "",
       endDate: "",
       commnent: "",
-      action: "ADD TO DO LIST",
+      action: "Thêm Công Việc",
     });
   };
 
-  //DELETE LIST
+  //Xoá công việc
   deleteItem = (title) =>
     this.setState({
       items: this.state.items.filter((item) => item.title != title),
     });
 
-    //theme 
   
 
   render() {
     return (
-      
-      <div>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <div style={{backgroundColor: "lightblue"}}>
         <nav className="navbar navbar-dark bg-primary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">
-              Navbar
+            <a className="navbar-brand " style={{ marginLeft: `30px` }} href="/">
+              Home
             </a>
             <IconButton color="inherit">
               <Badge badgeContent={1} color="secondary">
@@ -206,14 +219,15 @@ export class Main extends Component {
               </Badge>
             </IconButton>
           </div>
+          
         </nav>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1>{this.state.action}</h1>
+              <h1 style={{ textAlign: `center`}}>{this.state.action}</h1>
 
               <div className="form-group">
-                <label>Tiêu đề:</label>
+                <label>Tên công việc:</label>
                 <input
                   type="text"
                   className="form-control"
@@ -286,26 +300,26 @@ export class Main extends Component {
 
               <div className="form-group">
                 <button
-                  style={{ marginTop: `10px` , marginBottom: `10px`}}
+                  style={{ marginTop: `15px` , marginBottom: `10px`}}
                   className="btn btn-primary me-10"
                   onClick={
-                    this.state.action === "ADD TO DO LIST"
+                    this.state.action === "Thêm Công Việc"
                       ? this.addItem
                       : this.updateItem
                   }
                 >
-                  {this.state.action === "ADD TO DO LIST" ? "Add" : "Update"}
+                  {this.state.action === "Thêm Công Việc" ? "Thêm" : "Cập nhật"}
                 </button>
               </div>
             </div>
 
-            <div className="col-md-12">
-              <h1>To Do List</h1>
+            <div className="col-md-12" style={{ textAlign: `center`}}>
+              <h1>Danh sách công việc</h1>
               <table className="table">
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Tiêu đề</th>
+                    <th>Tên công việc</th>
                     <th>Nội dung</th>
                     <th>Trạng thái</th>
                     <th>Ngày bắt đầu</th>
@@ -331,7 +345,7 @@ export class Main extends Component {
                           class="btn btn-primary"
                           onClick={() => this.editItem(item, id)}
                         >
-                          Update
+                          Cập nhật
                         </button>
                       </td>
                       <td>
@@ -340,7 +354,7 @@ export class Main extends Component {
                           class="btn btn-danger"
                           onClick={() => this.deleteItem(item.title)}
                         >
-                          Remove
+                          Xoá
                         </button>
                       </td>
                     </tr>
